@@ -16,7 +16,13 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const formSchema = z.object({
   username: z
@@ -28,6 +34,8 @@ const formSchema = z.object({
   lastName: z
     .string()
     .min(2, { message: "First name must be at least 2 characters."}),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  gender: z.string().min(1, { message: "Gender is required." }),
 })
 
 export function ProfileForm() {
@@ -37,14 +45,15 @@ export function ProfileForm() {
     defaultValues: {
       username: "",
       firstName: "",
-      
+      lastName: "",
+      email: "",
     },
   })
  
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     toast(values.username + " " + values.firstName + " " + 
-      values.lastName)
+      values.lastName);
   }
 
   return (
@@ -69,7 +78,7 @@ export function ProfileForm() {
                     )}
                   />
 
-                  <div>
+                 
                     <FormField
                       control={form.control}
                       name="firstName"
@@ -86,9 +95,9 @@ export function ProfileForm() {
                         </FormItem>
                       )}
                     />
-                  </div>
+                  
 
-                  <div>
+                  
                     <FormField
                       control={form.control}
                       name="lastName"
@@ -105,26 +114,54 @@ export function ProfileForm() {
                         </FormItem>
                       )}
                     />
-                  </div>
+                  
+                      
+                  <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>E-mail</FormLabel>
+                            <FormControl>
+                              <Input placeholder="seu@email.com" {...field} type="email" />
+                            </FormControl>
+                            <FormDescription>
+                              Seu endereço de e-mail.
+                            </FormDescription>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                  <div>
-                    <FormField
-                      control={form.control}
-                      name="lastName"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
+                  <FormField
+                    control={form.control}
+                    name="gender"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Gender</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
-                            <Input placeholder="seuemail@gmail.com" {...field} />
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select your gender" />
+                            </SelectTrigger>
                           </FormControl>
-                          <FormDescription>
-                            This is your public display name.
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
+                          <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                            <SelectItem value="non-binary">Non-binary</SelectItem>
+                            <SelectItem value="other">Other</SelectItem>
+                            <SelectItem value="prefer-not-to-say">Prefer not to say</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormDescription>
+                          Select your gender identity.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+              )}
+            />
+
+
                 </div>
 
               <Button type="submit">Submit</Button>
