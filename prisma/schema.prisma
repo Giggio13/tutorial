@@ -1,0 +1,75 @@
+
+model User {
+  id              String    @id @default(cuid())
+  clerkId         String    @unique
+
+  firstName       String
+  lastName        String
+  username        String    @unique
+  email           String    @unique
+  imageUrl        String
+  gender          Gender?
+
+/////////////////////////////////////////////
+  birthDate       DateTime?
+  mobile          String?
+  hometownCountry String?
+  hometownState   String?
+  hometownCity    String?
+  currentCountry  String?
+  currentState    String?
+  currentCity     String?
+  bio             String?
+  fb              String?
+  instagram       String?
+  linkedin        String?
+  x               String?
+  youtube         String?
+  website         String?
+/////////////////////////////////////////////
+
+  verified        Boolean   @default(false)
+  xp              Int       @default(0)
+  coins           Int       @default(0)
+  lastActive      DateTime  @default(now())
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  guildId            String?
+  guild              Guild?               @relation(fields: [guildId], references: [id])
+  specialties        Specialty[] //many-to-many relation
+  professionalXP     ProfessionalXP[]
+  academicBackground AcademicBackground[]
+
+  followers     Follow[]       @relation("UserFollowers") //user's followers
+  following     Follow[]       @relation("UserFollowing") //people I follow
+  posts         Post[]
+  likes         Like[]
+  comments      Comment[]
+  shares        Share[]
+  notifications Notification[]
+
+  conversations Conversation[] // with AI
+  messages      Message[]
+
+  sentMessages     DirectMessage[] @relation("SentMessages")
+  receivedMessages DirectMessage[] @relation("ReceivedMessages")
+
+  createdGroups    Group[]
+  groupMemberships GroupMember[]
+  groupMessages    GroupMessage[]
+
+  createdReports  Report[] @relation("ReportsCreated")
+  receivedReports Report[] @relation("ReportsReceived")
+
+  blockedUsers Block[]      @relation("UserBlocking")
+  blockedBy    Block[]      @relation("UserBlocked")
+  privacy      UserPrivacy?
+
+  @@index([username])
+  @@index([firstName, lastName])
+  @@index([currentCity, currentState])
+  @@index([guildId])
+  @@map("users")
+}
+
