@@ -1,7 +1,8 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
-import { formType, formResolver, defaultValues } from '@/schemas/profileForm.schema'
+import type { formType } from '@/schemas/profileForm.schema'
+import { formResolver, defaultValues } from '@/schemas/profileForm.schema'
 
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
@@ -23,6 +24,23 @@ export function ProfileForm() {
     } catch (error) {
       toast.error("Erro ao enviar")
     }
+  }
+
+  function formatMobile(value: string) {
+    const digits = value.replace(/\D/g, ""); // remove tudo que não é número
+  
+    // (11) 99999-9999
+    if (digits.length <= 2) {
+      return `(${digits}`;
+    }
+    if (digits.length <= 7) {
+      return `(${digits.slice(0,2)}) ${digits.slice(2)}`;
+    }
+    if (digits.length <= 11) {
+      return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
+    }
+  
+    return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7,11)}`;
   }
 
   return (
@@ -108,6 +126,29 @@ export function ProfileForm() {
               </FormItem>
             )}
           />
+          
+         <FormField
+            control={form.control}
+            name="mobile"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Celular</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="(11) 99999-9999"
+                    type="tel"
+                    {...field}
+                    onChange={(e) => {
+                      const formatted = formatMobile(e.target.value);
+                      field.onChange(formatted); // atualiza com máscara
+                    }}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+         
         </div>
 
         <Button type="submit">Submit</Button>

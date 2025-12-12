@@ -23,8 +23,17 @@ export const formSchema = z.object({
 
   gender: z
     .string()
-    .min(1, { message: "Gender is required."})
+    .min(1, { message: "Gender is required."}),
+
+  mobile: z
+    .string()
+    .regex(
+    /^(\+55|55)?\s?\(?\d{2}\)?\s?\d{5}\-?\d{4}$/,
+    { message: "Número de celular inválido." }
+  )
+    
 })
+
 
 //type
 export type formType = z.infer<typeof formSchema>
@@ -39,4 +48,5 @@ export const defaultValues: formType = {
   lastName: "",
   email: "",
   gender: "",
+  mobile: "",
 }
