@@ -43,6 +43,20 @@ export function ProfileForm() {
     return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7,11)}`;
   }
 
+  const countries = [
+  "Brazil",
+  "United States",
+  "Canada",
+  "United Kingdom",
+  "Germany",
+  "France",
+  "Italy",
+  "Spain",
+  "Japan",
+  "China",
+  "Australia"
+];
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -143,6 +157,31 @@ export function ProfileForm() {
                       field.onChange(formatted); // atualiza com máscara
                     }}
                   />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="hometownCountry"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Country</FormLabel>
+                <FormControl>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your country" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {countries.map((country) => (
+                        <SelectItem key={country} value={country}>
+                          {country}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -30,7 +30,11 @@ export const formSchema = z.object({
     .regex(
     /^(\+55|55)?\s?\(?\d{2}\)?\s?\d{5}\-?\d{4}$/,
     { message: "Número de celular inválido." }
-  )
+  ),
+
+  hometownCountry: z
+    .string()
+    .min(2, { message: "Country must be at least 2 characters." })
     
 })
 
@@ -49,4 +53,5 @@ export const defaultValues: formType = {
   email: "",
   gender: "",
   mobile: "",
+  hometownCountry: "",
 }
