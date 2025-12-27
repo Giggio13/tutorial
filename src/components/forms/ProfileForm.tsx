@@ -1,5 +1,6 @@
 'use client'
 
+import { cities } from '@/constants/Constants'
 import { countries } from '@/constants/Constants'
 import { useForm } from 'react-hook-form'
 import type { formType } from '@/schemas/profileForm.schema'
@@ -193,6 +194,31 @@ export function ProfileForm() {
                       {states.map((state) => (
                         <SelectItem key={state} value={state}>
                           {state}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="hometownCity"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cidade de origem</FormLabel>
+                <FormControl>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your city" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {cities.map((city) => (
+                        <SelectItem key={city} value={city}>
+                          {city}
                         </SelectItem>
                       ))}
                     </SelectContent>
