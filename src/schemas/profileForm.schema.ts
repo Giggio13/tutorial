@@ -52,6 +52,18 @@ export const formSchema = z.object({
   .string()
   .optional(),
 
+  instagram: z
+  .string()
+  .optional()
+  .refine(
+    (value) =>
+      !value ||
+      value.includes("instagram.com"),
+    {
+      message: "Invalid Instagram link",
+    }
+  ),
+
 
 })
 
@@ -75,4 +87,5 @@ export const defaultValues: formType = {
   hometownCity: "",
   bio: "",
   facebook: "",
+  instagram: "",
 }

@@ -267,6 +267,24 @@ export function ProfileForm() {
             )}
           />
 
+          <FormField
+            control={form.control}
+            name="instagram"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Instagram</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://www.instagram.com/yourusername"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+
          
         </div>
 
