@@ -43,7 +43,10 @@ export const formSchema = z.object({
   hometownCity: z
     .string()
     .min(2, { message: "City must be at least 2 characters." }),
-  
+
+  bio: z
+    .string()
+    .max(500, { message: "Bio must be at most 500 characters." }),
 })
 
 
@@ -64,4 +67,5 @@ export const defaultValues: formType = {
   hometownCountry: "",
   hometownState: "",
   hometownCity: "",
+bio: "",
 }
