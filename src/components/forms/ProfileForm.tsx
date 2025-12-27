@@ -284,6 +284,82 @@ export function ProfileForm() {
             )}
           />
 
+          <FormField
+            control={form.control}
+            name="twitter"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>X (Twitter)</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://x.com/yourusername"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+
+
+          <FormField
+            control={form.control}
+            name="youtube"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>YouTube</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://www.youtube.com/@yourchannel"
+                    type="url"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+            <FormField
+              control={form.control}
+              name="youtube"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>YouTube</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://www.youtube.com/@yourchannel"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+
+          <FormField
+            control={form.control}
+            name="linkedin"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>LinkedIn</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://www.linkedin.com/in/yourprofile"
+                    type="url"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          
+
+
 
          
         </div>

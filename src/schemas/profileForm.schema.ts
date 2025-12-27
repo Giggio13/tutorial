@@ -64,6 +64,46 @@ export const formSchema = z.object({
     }
   ),
 
+  twitter: z
+  .string()
+  .optional()
+  .refine(
+    (value) =>
+      !value ||
+      value.includes("x.com") ||
+      value.includes("twitter.com"),
+    {
+      message: "Invalid X (Twitter) link",
+    }
+  ),
+
+  youtube: z
+  .string()
+  .optional()
+  .refine(
+    (value) =>
+      !value ||
+      value.includes("youtube.com") ||
+      value.includes("youtu.be"),
+    {
+      message: "Invalid YouTube link",
+    }
+  ),
+
+  linkedin: z
+  .string()
+  .optional()
+  .refine(
+    (value) =>
+      !value ||
+      value.includes("linkedin.com"),
+    {
+      message: "Invalid LinkedIn link",
+    }
+  ),
+
+  
+
 
 })
 
@@ -88,4 +128,7 @@ export const defaultValues: formType = {
   bio: "",
   facebook: "",
   instagram: "",
+  linkedin: "",
+  twitter: "",
+  youtube: "",
 }
