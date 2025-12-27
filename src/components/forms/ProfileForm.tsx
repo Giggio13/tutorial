@@ -1,5 +1,6 @@
 'use client'
 
+import { countries } from '@/constants/Constants'
 import { useForm } from 'react-hook-form'
 import type { formType } from '@/schemas/profileForm.schema'
 import { formResolver, defaultValues } from '@/schemas/profileForm.schema'
@@ -43,19 +44,8 @@ export function ProfileForm() {
     return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7,11)}`;
   }
 
-  const countries = [
-  "Brazil",
-  "United States",
-  "Canada",
-  "United Kingdom",
-  "Germany",
-  "France",
-  "Italy",
-  "Spain",
-  "Japan",
-  "China",
-  "Australia"
-];
+  
+
 
   return (
     <Form {...form}>
@@ -168,7 +158,7 @@ export function ProfileForm() {
             name="hometownCountry"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Country</FormLabel>
+                <FormLabel>País de origem</FormLabel>
                 <FormControl>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger>
