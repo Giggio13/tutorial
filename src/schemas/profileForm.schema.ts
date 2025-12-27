@@ -34,8 +34,11 @@ export const formSchema = z.object({
 
   hometownCountry: z
     .string()
-    .min(2, { message: "Country must be at least 2 characters." })
-    
+    .min(2, { message: "Country must be at least 2 characters." }),
+
+  hometownState: z
+    .string()
+    .min(2, { message: "State must be at least 2 characters." }),
 })
 
 
@@ -54,4 +57,5 @@ export const defaultValues: formType = {
   gender: "",
   mobile: "",
   hometownCountry: "",
+  hometownState: "",
 }

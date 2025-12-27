@@ -4,7 +4,7 @@ import { countries } from '@/constants/Constants'
 import { useForm } from 'react-hook-form'
 import type { formType } from '@/schemas/profileForm.schema'
 import { formResolver, defaultValues } from '@/schemas/profileForm.schema'
-
+import { states } from '@/constants/Constants'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -168,6 +168,31 @@ export function ProfileForm() {
                       {countries.map((country) => (
                         <SelectItem key={country} value={country}>
                           {country}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="hometownState"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Estado de origem</FormLabel>
+                <FormControl>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your state" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {states.map((state) => (
+                        <SelectItem key={state} value={state}>
+                          {state}
                         </SelectItem>
                       ))}
                     </SelectContent>
