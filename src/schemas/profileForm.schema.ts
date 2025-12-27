@@ -47,6 +47,12 @@ export const formSchema = z.object({
   bio: z
     .string()
     .max(500, { message: "Bio must be at most 500 characters." }),
+
+  facebook: z
+  .string()
+  .optional(),
+
+
 })
 
 
@@ -67,5 +73,6 @@ export const defaultValues: formType = {
   hometownCountry: "",
   hometownState: "",
   hometownCity: "",
-bio: "",
+  bio: "",
+  facebook: "",
 }

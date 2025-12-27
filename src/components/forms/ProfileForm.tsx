@@ -231,23 +231,42 @@ export function ProfileForm() {
           />
 
           <FormField
-  control={form.control}
-  name="bio"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Bio</FormLabel>
-      <FormControl>
-        <Textarea
-          placeholder="Sobre você"
-          className="resize-none"
-          rows={4}
-          {...field}
-        />
-      </FormControl>
-      <FormMessage />
-    </FormItem>
-  )}
-/>
+            control={form.control}
+            name="bio"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Bio</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Sobre você"
+                    className="resize-none"
+                    rows={4}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="facebook"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Facebook</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://www.facebook.com/yourprofile"
+                    type="url"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
          
         </div>
 
