@@ -21,6 +21,10 @@ export const formSchema = z.object({
   email: z
     .email(),
 
+  dob: z
+    .date()
+    .optional(),
+
   gender: z
     .string()
     .min(1, { message: "Gender is required."}),
@@ -129,6 +133,7 @@ export const defaultValues: formType = {
   firstName: "",
   lastName: "",
   email: "",
+  dob: undefined,
   gender: "",
   mobile: "",
   hometownCountry: "",

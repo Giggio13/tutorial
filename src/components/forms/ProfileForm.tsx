@@ -1,17 +1,17 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { cities } from '@/constants/Constants'
 import { countries } from '@/constants/Constants'
-import { useForm } from 'react-hook-form'
-import type { formType } from '@/schemas/profileForm.schema'
-import { formResolver, defaultValues } from '@/schemas/profileForm.schema'
-import { states } from '@/constants/Constants'
-import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { formResolver, defaultValues } from '@/schemas/profileForm.schema'
+import type { formType } from '@/schemas/profileForm.schema'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { states } from '@/constants/Constants'
+import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
-import { Textarea } from '@/components/ui/textarea' 
+import { useForm } from 'react-hook-form'
 
 export function ProfileForm() {
   const form = useForm<formType>({ 
@@ -109,9 +109,30 @@ export function ProfileForm() {
             )}
           />
 
-          
+        <FormField
+          control={form.control}
+          name="dob"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Data de nascimento</FormLabel>
+              <FormControl>
+                <Input
+                  type="date"
+                  value={field.value ? field.value.toISOString().split("T")[0] : ""}
+                  onChange={(e) =>
+                    field.onChange(
+                      e.target.value ? new Date(e.target.value) : undefined
+                    )
+                  }
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-  <FormField
+
+        <FormField
             control={form.control}
             name="gender"
             render={({ field }) => (
