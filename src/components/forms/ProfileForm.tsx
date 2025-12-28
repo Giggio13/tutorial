@@ -109,7 +109,9 @@ export function ProfileForm() {
             )}
           />
 
-          <FormField
+          
+
+  <FormField
             control={form.control}
             name="gender"
             render={({ field }) => (
@@ -357,11 +359,23 @@ export function ProfileForm() {
             )}
           />
 
-          
+          <FormField
+            control={form.control}
+            name="website"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Website</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="https://yourwebsite.com"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-
-
-         
         </div>
 
         <Button type="submit">Submit</Button>

@@ -102,8 +102,17 @@ export const formSchema = z.object({
     }
   ),
 
-  
-
+  website: z
+  .string()
+  .optional()
+  .refine(
+    (value) =>
+      !value ||
+      value.includes("."),
+    {
+      message: "Enter a valid website",
+    }
+  ),
 
 })
 
@@ -131,4 +140,5 @@ export const defaultValues: formType = {
   linkedin: "",
   twitter: "",
   youtube: "",
+  website: "",
 }
