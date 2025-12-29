@@ -323,28 +323,8 @@ export function ProfileForm() {
               </FormItem>
             )}
           />
-
-
-
+            
           <FormField
-            control={form.control}
-            name="youtube"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>YouTube</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="https://www.youtube.com/@yourchannel"
-                    type="url"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-            <FormField
               control={form.control}
               name="youtube"
               render={({ field }) => (
